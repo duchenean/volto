@@ -101,32 +101,32 @@ const defaultModify = ({
     //   },
     // });
 
-    //   config.plugins.unshift(
-    //     // restrict moment.js locales to en/de
-    //     // see https://github.com/jmblog/how-to-optimize-momentjs-with-webpack for details
-    //     new webpack.ContextReplacementPlugin(
-    //       /moment[/\\]locale$/,
-    //       new RegExp(Object.keys(languages).join('|')),
-    //     ),
-    //     new LodashModuleReplacementPlugin({
-    //       shorthands: true,
-    //       cloning: true,
-    //       currying: true,
-    //       caching: true,
-    //       collections: true,
-    //       exotics: true,
-    //       guards: true,
-    //       metadata: true,
-    //       deburring: true,
-    //       unicode: true,
-    //       chaining: true,
-    //       memoizing: true,
-    //       coercions: true,
-    //       flattening: true,
-    //       paths: true,
-    //       placeholders: true,
-    //     }),
-    //   );
+    config.plugins.unshift(
+      //     // restrict moment.js locales to en/de
+      //     // see https://github.com/jmblog/how-to-optimize-momentjs-with-webpack for details
+      //     new webpack.ContextReplacementPlugin(
+      //       /moment[/\\]locale$/,
+      //       new RegExp(Object.keys(languages).join('|')),
+      //     ),
+      new LodashModuleReplacementPlugin({
+        shorthands: true,
+        cloning: true,
+        currying: true,
+        caching: true,
+        collections: true,
+        exotics: true,
+        guards: true,
+        metadata: true,
+        deburring: true,
+        unicode: true,
+        chaining: true,
+        memoizing: true,
+        coercions: true,
+        flattening: true,
+        paths: true,
+        placeholders: true,
+      }),
+    );
   }
 
   if (target === 'node') {
@@ -192,8 +192,8 @@ const defaultModify = ({
   ]);
 
   config.resolve.plugins = [
-    // new RelativeResolverPlugin(registry),
-    // new RootResolverPlugin(),
+    new RelativeResolverPlugin(registry),
+    new RootResolverPlugin(),
   ];
   config.resolve.fallback = { zlib: false };
 
@@ -236,7 +236,6 @@ const defaultModify = ({
     });
     addonsAsExternals = registry.addonNames.map((addon) => new RegExp(addon));
   }
-  // console.dir(config.module.rules[0], { depth: null });
 
   if (process.env.RAZZLE_TESTING_ADDONS) {
     testingAddons.forEach((addon) => {
@@ -306,9 +305,6 @@ module.exports = {
     );
     return res;
   },
-  // experimental: {
-  //   reactRefresh: true,
-  // },
   options: {
     // verbose: true,
     debug: true,

@@ -243,6 +243,7 @@
     "@babel/plugin-proposal-export-namespace-from": "7.12.13",
     "@babel/plugin-proposal-json-strings": "7.13.8",
     "@babel/plugin-proposal-throw-expressions": "7.12.13",
+    "@babel/runtime": "7.17.2",
     "@loadable/babel-plugin": "5.13.2",
     "@loadable/component": "5.14.1",
     "@loadable/server": "5.14.0",
@@ -317,8 +318,8 @@
     "locale": "0.1.0",
     "lodash": "4.17.21",
     "lodash-move": "1.1.1",
-    "luxon": "1.22.0",
     "lodash-webpack-plugin": "0.11.6",
+    "luxon": "1.22.0",
     "mem": "4.0.0",
     "mini-css-extract-plugin": "0.9.0",
     "moment": "2.24.0",
@@ -333,9 +334,9 @@
     "promise-file-reader": "1.0.2",
     "prop-types": "15.7.2",
     "query-string": "7.0.0",
-    "razzle": "4.0.4",
-    "razzle-dev-utils": "4.0.4",
-    "razzle-plugin-bundle-analyzer": "4.0.4",
+    "razzle": "4.2.15",
+    "razzle-dev-utils": "4.2.15",
+    "razzle-plugin-bundle-analyzer": "4.2.15",
     "rc-time-picker": "3.7.3",
     "react": "16.14.0",
     "react-anchor-link-smooth-scroll": "1.0.12",
@@ -398,6 +399,9 @@
     "yarnhook": "0.5.1"
   },
   "devDependencies": {
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
+    "@babel/preset-env": "7.16.11",
     "@storybook/addon-actions": "^6.3.0",
     "@storybook/addon-controls": "6.3.0",
     "@storybook/addon-essentials": "^6.3.0",
@@ -412,6 +416,6 @@
   },
   "resolutions": {
     "http-proxy": "^1.18.1",
-    "@babel/runtime": "7.12.5"
+    "@babel/runtime": "7.17.2"
   }
 }
