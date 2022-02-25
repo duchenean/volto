@@ -4,7 +4,7 @@
  */
 
 import { last, memoize } from 'lodash';
-import urlRegex from './urlRegex';
+import { urlRegex, telRegex, mailRegex } from './urlRegex';
 import prependHttp from 'prepend-http';
 import config from '@plone/volto/registry';
 
@@ -176,7 +176,8 @@ export function isInternalURL(url) {
   return (
     url &&
     (url.indexOf(settings.publicURL) !== -1 ||
-      url.indexOf(settings.internalApiPath) !== -1 ||
+      (settings.internalApiPath &&
+        url.indexOf(settings.internalApiPath) !== -1) ||
       url.indexOf(settings.apiPath) !== -1 ||
       url.charAt(0) === '/' ||
       url.charAt(0) === '.' ||
@@ -213,3 +214,34 @@ export function normalizeUrl(url) {
 export function removeProtocol(url) {
   return url.replace('https://', '').replace('http://', '');
 }
+
+export function isMail(text) {
+  return mailRegex().test(text);
+}
+
+export function isTelephone(text) {
+  return telRegex().test(text);
+}
+
+export function normaliseMail(email) {
+  if (email.toLowerCase().startsWith('mailto:')) {
+    return email;
+  }
+  return `mailto:${email}`;
+}
+
+export function normalizeTelephone(tel) {
+  if (tel.toLowerCase().startsWith('tel:')) {
+    return tel;
+  }
+  return `tel:${tel}`;
+}
+
+export const URLUtils = {
+  normalizeTelephone,
+  normaliseMail,
+  normalizeUrl,
+  isTelephone,
+  isMail,
+  isUrl,
+};
