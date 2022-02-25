@@ -7,7 +7,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { isEmpty } from 'lodash';
 
-import { version as voltoVersion } from '../../../../package.json';
+import packageInfo from '../../../../package.json';
 import { addonsInfo } from 'load-volto-addons';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -39,7 +39,7 @@ const VersionOverview = ({
           paddingLeft: '1rem',
         }}
       >
-        {voltoVersion && <li>Volto {voltoVersion}</li>}
+        {packageInfo.version && <li>Volto {packageInfo.version}</li>}
         <li>Plone {plone_version}</li>
         <li>plone.restapi {plone_restapi_version}</li>
         <li>CMF {cmf_version}</li>

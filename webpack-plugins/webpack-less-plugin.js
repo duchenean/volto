@@ -107,7 +107,6 @@ module.exports = (userOptions = {}) => ({
             }),
       },
     };
-    // console.dir(postCssLoader, { depth: null });
 
     const lessLoader = {
       loader: require.resolve('less-loader'),

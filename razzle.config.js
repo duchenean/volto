@@ -93,13 +93,9 @@ const defaultModify = ({
       ? 'static/js/[name].js'
       : 'static/js/[name].[chunkhash:8].js';
 
-    // config.optimization = Object.assign({}, config.optimization, {
-    //   runtimeChunk: true,
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     name: dev,
-    //   },
-    // });
+    config.optimization = Object.assign({}, config.optimization, {
+      runtimeChunk: true,
+    });
 
     config.plugins.unshift(
       // restrict moment.js locales to en/de
@@ -177,9 +173,6 @@ const defaultModify = ({
     /icons\/.*\.svg$/,
     ...fileLoader.exclude,
   ];
-
-  // Disabling the ESlint pre loader
-//  config.module.rules.splice(0, 1);
 
   let addonsFromEnvVar = [];
   if (process.env.ADDONS) {
@@ -306,8 +299,21 @@ module.exports = {
     );
     return res;
   },
+  modifyWebpackOptions: ({
+    env: { dev },
+    options: { razzleOptions, webpackOptions },
+  }) => {
+    if (!dev) {
+      // Make sure path is not too long in public/static/media. This can be the case
+      // when using 'url(data:[base64 file])' in theme bundle. Default was
+      // '${razzleOptions.mediaPrefix}/[name].[contenthash:8].[ext]' but produced
+      // too long path.
+      webpackOptions.fileLoaderOutputName = `${razzleOptions.mediaPrefix}/[contenthash].[ext]`;
+      webpackOptions.urlLoaderOutputName = `${razzleOptions.mediaPrefix}/[contenthash].[ext]`;
+    }
+    return webpackOptions;
+  },
   options: {
-    verbose: true,
-    debug: true,
+    enableReactRefresh: true,
   },
 };
