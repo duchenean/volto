@@ -102,12 +102,12 @@ const defaultModify = ({
     // });
 
     config.plugins.unshift(
-      //     // restrict moment.js locales to en/de
-      //     // see https://github.com/jmblog/how-to-optimize-momentjs-with-webpack for details
-      //     new webpack.ContextReplacementPlugin(
-      //       /moment[/\\]locale$/,
-      //       new RegExp(Object.keys(languages).join('|')),
-      //     ),
+      // restrict moment.js locales to en/de
+      // see https://github.com/jmblog/how-to-optimize-momentjs-with-webpack for details
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        new RegExp(Object.keys(languages).join('|')),
+      ),
       new LodashModuleReplacementPlugin({
         shorthands: true,
         cloning: true,
@@ -177,9 +177,6 @@ const defaultModify = ({
     /icons\/.*\.svg$/,
     ...fileLoader.exclude,
   ];
-
-  // Disabling the ESlint pre loader
-  // config.module.rules.splice(0, 1);
 
   let testingAddons = [];
   if (process.env.RAZZLE_TESTING_ADDONS) {
@@ -306,7 +303,7 @@ module.exports = {
     return res;
   },
   options: {
-    // verbose: true,
+    verbose: true,
     debug: true,
   },
 };
