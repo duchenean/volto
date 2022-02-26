@@ -5,9 +5,6 @@ class RootResolverPlugin {
     resolver
       .getHook('before-existing-directory')
       .tapAsync('RootResolverPlugin', (request, resolveContext, callback) => {
-        if (request.request) {
-          console.log(request);
-        }
         if (request.request && request.request.startsWith('~/../')) {
           const resourcePath = request.request.substr(5);
 
